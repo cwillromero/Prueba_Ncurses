@@ -9,6 +9,7 @@ void salir();
 int menu();
 void movimiento();
 int kbhit(void);
+vector<char> X;
 
 int main(void)
 {
@@ -78,11 +79,11 @@ int menu()
     if (has_colors())
     {
         start_color();
-        init_pair(1, COLOR_GREEN, COLOR_WHITE);
+        init_pair(1, COLOR_CYAN, COLOR_WHITE);
         attron(COLOR_PAIR(1));
-        printw("<< Laboratorio 5  -  Carlos Romero >>");
+        printw("<< Laboratorio 6  -  Carlos Romero >>");
         attroff(COLOR_PAIR(1));
-        init_pair(2, COLOR_CYAN, COLOR_BLACK);
+        init_pair(2, COLOR_BLUE, COLOR_BLACK);
         attron(COLOR_PAIR(2));
         move(1, 0);
         printw("Escoja una opción:\n");
@@ -185,12 +186,13 @@ void movimiento()
 {
     erase();
     //vector <char> ser={'*','*','*'};
-    char ser = '*';
+    char ser = (char)79;
     int x, y;
     int cx = 1;
     int cy = 1;
     getmaxyx(stdscr, y, x);
     move(y / 2, x / 2 - 18);
+    curs_set(0);
     start_color();
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
     attron(COLOR_PAIR(1));
@@ -211,8 +213,10 @@ void movimiento()
     int direccion = 3;
     cx = x / 2;
     cy = y / 2;
-    curs_set(0);
     erase();
+    init_pair(2, COLOR_BLUE, COLOR_BLACK);
+    attron(COLOR_PAIR(2));
+    refresh();
     while (true)
     {
         if (kbhit())
@@ -242,7 +246,7 @@ void movimiento()
         if ((cx > 0 && cy > 0) && (cx < x && cy < y))
         {
             move(cy, cx);
-            printw("*");
+            printw("%c", ser);
             refresh();
             usleep(1000000 / 5);
             if (direccion == 1)
@@ -279,6 +283,7 @@ void movimiento()
             break;
         }
     }
+    attroff(COLOR_PAIR(2));
     move(y / 2, (x / 2 - 4));
     printw("Perdió!!");
     refresh();
