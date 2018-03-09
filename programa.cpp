@@ -89,7 +89,7 @@ int menu()
         move(2, 1);
         printw("1)  \n");
         move(3, 1);
-        printw("2)  \n");
+        printw("2) Intento de Snake \n");
         move(4, 1);
         printw("3)  \n");
         move(5, 1);
@@ -190,12 +190,26 @@ void movimiento()
     int cx = 1;
     int cy = 1;
     getmaxyx(stdscr, y, x);
+    move(y / 2, x / 2 - 18);
+    start_color();
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    attron(COLOR_PAIR(1));
+    printw("Presione ENTER para iniciar el juego.");
+    move(y / 2 + 1, x / 2 - 29);
+    printw("*Las teclas sólo funcionarán sin no está activo BLOQ MAYUS*");
+    refresh();
+    attroff(COLOR_PAIR(1));
     int tecla;
-    //tecla = getch();
+    tecla = getch();
+    while (tecla != 10)
+    {
+        tecla = getch();
+    }
     int direccion = 3;
     cx = x / 2;
     cy = y / 2;
     curs_set(0);
+    erase();
     while (true)
     {
         if (kbhit())
@@ -228,25 +242,25 @@ void movimiento()
             printw("*");
             refresh();
             usleep(1000000 / 4);
-            if (direccion==1)
+            if (direccion == 1)
             {
                 cy = cy - 1;
                 move(cy + 1, cx);
                 printw(" ");
             }
-            if (direccion==2)
+            if (direccion == 2)
             {
                 cx = cx - 1;
                 move(cy, cx + 1);
                 printw(" ");
             }
-            if (direccion==3)
+            if (direccion == 3)
             {
                 cx = cx + 1;
                 move(cy, cx - 1);
                 printw(" ");
             }
-            if (direccion==4)
+            if (direccion == 4)
             {
                 cy = cy + 1;
                 move(cy - 1, cx);
