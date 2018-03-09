@@ -209,7 +209,7 @@ void movimiento()
     cx = x / 2;
     cy = y / 2;
     erase();
-    init_pair(2, COLOR_BLUE, COLOR_BLACK);
+    init_pair(2, COLOR_MAGENTA, COLOR_BLACK);
     attron(COLOR_PAIR(2));
     keypad(stdscr,TRUE);
     refresh();
@@ -280,6 +280,7 @@ void movimiento()
         }
     }
     attroff(COLOR_PAIR(2));
+    keypad(stdscr,FALSE);
     move(y / 2, (x / 2 - 4));
     printw("Perdió!!");
     refresh();
