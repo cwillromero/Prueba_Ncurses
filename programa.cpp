@@ -192,11 +192,14 @@ void movimiento()
     getmaxyx(stdscr, y, x);
     move(y / 2, x / 2 - 18);
     start_color();
-    init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(1, COLOR_GREEN, COLOR_BLACK);
     attron(COLOR_PAIR(1));
     printw("Presione ENTER para iniciar el juego.");
     move(y / 2 + 1, x / 2 - 29);
-    printw("*Las teclas sólo funcionarán sin no está activo BLOQ MAYUS*");
+    printw("*Las teclas sólo funcionarán si no está activo BLOQ MAYUS*");
+    refresh();
+    move(y / 2 + 2, x / 2 - 4);
+    printw("*w,a,s,d*");
     refresh();
     attroff(COLOR_PAIR(1));
     int tecla;
@@ -241,30 +244,34 @@ void movimiento()
             move(cy, cx);
             printw("*");
             refresh();
-            usleep(1000000 / 4);
+            usleep(1000000 / 5);
             if (direccion == 1)
             {
                 cy = cy - 1;
                 move(cy + 1, cx);
                 printw(" ");
+                refresh();
             }
             if (direccion == 2)
             {
                 cx = cx - 1;
                 move(cy, cx + 1);
                 printw(" ");
+                refresh();
             }
             if (direccion == 3)
             {
                 cx = cx + 1;
                 move(cy, cx - 1);
                 printw(" ");
+                refresh();
             }
             if (direccion == 4)
             {
                 cy = cy + 1;
                 move(cy - 1, cx);
                 printw(" ");
+                refresh();
             }
         }
         else
