@@ -197,11 +197,6 @@ void movimiento()
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
     attron(COLOR_PAIR(1));
     printw("Presione ENTER para iniciar el juego.");
-    move(y / 2 + 1, x / 2 - 29);
-    printw("*Las teclas sólo funcionarán si no está activo BLOQ MAYUS*");
-    refresh();
-    move(y / 2 + 2, x / 2 - 4);
-    printw("*w,a,s,d*");
     refresh();
     attroff(COLOR_PAIR(1));
     int tecla;
@@ -216,6 +211,7 @@ void movimiento()
     erase();
     init_pair(2, COLOR_BLUE, COLOR_BLACK);
     attron(COLOR_PAIR(2));
+    keypad(stdscr,TRUE);
     refresh();
     while (true)
     {
@@ -223,22 +219,22 @@ void movimiento()
         {
             tecla = getch();
             //ARRIBA
-            if (tecla == 119)
+            if (tecla==KEY_UP)
             {
                 direccion = 1;
             }
             //IZQUIERDA
-            if (tecla == 97)
+            if (tecla==KEY_LEFT)
             {
                 direccion = 2;
             }
             //DERECHA
-            if (tecla == 100)
+            if (tecla==KEY_RIGHT)
             {
                 direccion = 3;
             }
             //ABAJO
-            if (tecla == 115)
+            if (tecla==KEY_DOWN)
             {
                 direccion = 4;
             }
